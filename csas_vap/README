@@ -1,0 +1,6 @@
+- Add class csas-vap to view
+- Use view style "Unformat list"
+- pager full default
+- Rewrite views-view.tpl.php
+start with
+<div class="<?php print $classes; ?>"<?php if(!empty($attr)):print drupal_attributes($attr);endif;?>> ...

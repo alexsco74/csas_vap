@@ -1,0 +1,7 @@
+name = Csas views autopager
+description = Csas views scropll ajax pager
+package = Core
+version = VERSION
+core = 7.x
+;configure = admin/config/development/xxx
+

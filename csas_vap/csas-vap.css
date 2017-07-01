@@ -1,0 +1,73 @@
+.csas-vap .pager {
+    display: none;
+}
+
+.csas-vap-new-itm.csas-ded {
+    opacity: 1;
+}
+
+.csas-vap-loading-bar{
+    display: block;
+    margin: 5% auto;
+    height: 100px;
+    width: 100px;
+    border: 6px solid #fff;
+    border-right-color: #c30;
+    border-top-color: #c30;
+    border-radius: 100%;
+    -webkit-animation: spin 800ms infinite linear;
+    animation: spin 800ms infinite linear;
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@media only screen and (max-width: 361px) {
+    .csas-3-rows > .csas-col {
+        width: 100%;
+
+    }
+
+    .csas-w100 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 361px) and (max-width: 576px) {
+    .csas-3-rows > .csas-col {
+        width: 50%;
+    }
+
+    .csas-w100 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .csas-3-rows > .csas-col {
+        width: 33.4% !important;
+    }
+
+    .csas-w100 {
+        width: 100%;
+    }
+}

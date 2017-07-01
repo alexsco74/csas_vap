@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @file
+ * Csas vap
+ */
+function csas_vap_preprocess_views_view(&$vars) {
+  global $pager_page_array, $pager_total;
+
+  //view ajax page loader
+  if (_csas_views_exists_cls($vars['classes_array'], 'csas-vap')) {
+    $id = $vars['name'] . '-' . $vars['display_id'];
+    $req_uri = request_uri();
+    if (!isset($vars['attr'])) {
+      $vars['attr'] = array();
+    }
+    if (isset($req_uri)) {
+      $vars['attr']['data-csas-vap-ruri'] = $req_uri;
+      $vars['attr']['data-csas-vap-cls'] = $id;
+    }
+
+    if (isset($pager_page_array[0])) {
+      $vars['attr']['data-csas-vap-up-page'] = trim(current($pager_page_array));
+    }
+    if (isset($pager_total[0])) {
+      $last = current($pager_total) - 1;
+      $vars['attr']['data-csas-vap-up-lpage'] = $last;
+    }
+
+    if (isset($vars['attr']['data-csas-vap-ruri'])
+      && isset($vars['attr']['data-csas-vap-up-page'])
+      && isset($vars['attr']['data-csas-vap-up-lpage'])
+    ) {
+      //$vars['classes_array'][] = 'csas-vap';
+      $vars['classes_array'][] = $id;
+      $m_path = drupal_get_path('module', 'csas_vap');
+      drupal_add_js($m_path . '/csas-vap.js');
+      drupal_add_css($m_path . '/csas-vap.css');
+    }
+  }
+}
+
+function _csas_views_exists_cls($cls_ar = array(), $cls_chk = 'csas-vap') {
+  $ret = FALSE;
+  if (!empty($cls_ar)) {
+    $cls_chk_ar = array_fill(0, count($cls_ar), $cls_chk);
+    $ret = (bool)array_filter(array_map('_csas_views_exists_cls_map', $cls_ar, $cls_chk_ar));
+  }
+  return $ret;
+}
+
+function _csas_views_exists_cls_map($n, $m) {
+  if (strpos($n, $m) !== FALSE) {
+    return true;
+  } else {
+    return false;
+  }
+}
