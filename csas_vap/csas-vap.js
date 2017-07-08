@@ -49,7 +49,6 @@
             var csasAsE = $(this);
             var csasApCsE = '.' + csasAsE.attr('data-csas-vap-cls') + ' ' + csasVapCnt;
             var csasApCe = $(csasVapCnt, csasAsE);
-
             $(window).bind('scroll', function () {
                 csasVapApInint(csasAsE, csasApCsE, csasApCe);
             });
@@ -59,14 +58,14 @@
 
     Drupal.behaviors.csasVap = {};
     Drupal.behaviors.csasVap.attach = function (context, settings) {
-        $(window).load(function () {
-            csasVapApAth(context);
-        });
-
+        csasVapApAth(context);
         $(document).on('documentChange', function () {
             csasVapApAth();
         });
     };
 
+    $(window).on('load', function () {
+        csasVapApAth();
+    });
 
 })(jQuery);
